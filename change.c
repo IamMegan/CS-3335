@@ -14,22 +14,22 @@ int main()
     scanf("%d",&answer);
         
         while(answer > 0){
-            if(answer > 50){
+            if(answer >= 50){
                 answer-=50;
                 bill50++;
             }
             
-            else if(answer > 20){
+            else if(answer >= 20){
                 answer-=20;
                 bill20++;
             }
             
-            else if(answer > 10){
+            else if(answer >= 10){
                 answer-=10;
                 bill10++;
             }
             
-           else if(answer > 5){
+           else if(answer >= 5){
                 answer-=5;
                 bill5++;
             }
