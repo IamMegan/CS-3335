@@ -15,14 +15,12 @@ bool checkYear(int year){
     return false;
 }
 
-int totDaysInYears(int year){
-    
-}
-
 int main()
 {
     int mon1, mon2, day1, day2, year1, year2;
-    int daysInMonth[] = {0};
+    int daysInRegYear[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+    int daysInLeapYear[] = {31,29,31,30,31,30,31,31,30,31,30,31};
+    int totDays = 0;
     printf("Enter a month, day, year in the mm/dd/yyyy format: ");
     scanf("%d/%d/%d/", &mon1,&day1,&year1);
     
@@ -39,11 +37,27 @@ int main()
         }
         
         else{
-            int totDays = 0;
-            
+            if(year1 > year2){
+                printf("The second date must be after the first.");
+            }
+            else{
+                for(int i = year1; i <= year2; i++){
+                    for(int j = mon1 - 1; j < 13; j++){
+                     if(checkYear(i)){
+                         totDays += daysInLeapYear[j];
+                     }
+                     else{
+                         totDays += daysInRegYear[j];
+                     }
+                }
+                
+            }
             
         }
     }
     
-}
+    printf("%d\n", totDays);
     
+}
+    return 0;
+}
