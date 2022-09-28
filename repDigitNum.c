@@ -3,7 +3,7 @@
 #include <stdlib.h>
 int main()
 {
-    int digitOccurence[10] = {0}; 
+    short digitOccurence[10] = {0}; 
     int num;
     printf("Enter a number to process: ");
     scanf("%d", &num);
