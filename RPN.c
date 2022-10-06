@@ -24,7 +24,7 @@ int main()
     while(op != '='){
         op = getchar();
         if(isdigit(op)){
-            push(op);
+            push(op - '0');
         }
         else{
             switch(op){
@@ -49,7 +49,7 @@ int main()
                     push(a/b);
                     break;
                 case '=' :
-                    printf("%d", stack[count]);
+                    printf("%d", pop());
                     break;
             }
         }
