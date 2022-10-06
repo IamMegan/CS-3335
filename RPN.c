@@ -4,42 +4,56 @@
 int stack[50];
 int count = 0;
 void push(int n){
-    stack[count++] = n;
+    stack[count] = n;
+    count++;
 }
 
 int pop(){
-    int res = stack[--count];
+    int res = stack[count-1];
+    count--;
     return res;
 }
 
 int main()
 {
     char op;
-    int n, a, b;
-    while(op != '=')
-    {
-        if(scanf("%d",&n)){
-            push(scanf("%d",&n));
-            
+    int a,b;
+    
+    printf("Enter a statment: ");
+    
+    while(op != '='){
+        op = getchar();
+        if(isdigit(op)){
+            push(op);
         }
         else{
-            scanf("%c", &op);
             switch(op){
                 case '+' :
                     a = pop();
                     b = pop();
                     push(a+b);
-                break;
+                    break;
                 case '-' :
-                break;
+                    a = pop();
+                    b = pop();
+                    push(a-b);
+                    break;
                 case '*' :
-                break;
+                    a = pop();
+                    b = pop();
+                    push(a*b);
+                    break;
                 case '/' :
-                break;
-                }
+                    a = pop();
+                    b = pop();
+                    push(a/b);
+                    break;
+                case '=' :
+                    printf("%d", stack[count]);
+                    break;
             }
+        }
+        
     }
-    printf("%d",stack[count]);
-    return 0;  
+    return 0;
 }
-    
