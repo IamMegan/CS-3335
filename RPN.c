@@ -1,6 +1,16 @@
+/*
+Program Name: PRN.c
+Programmer: Megan Johnson
+Class: CS 3335
+HW: 03
+Problem: 02
+*/ 
+
+
 #include <stdio.h>
 #include <ctype.h>
 
+//Stack implementation
 int stack[50];
 int count = 0;
 void push(int n){
@@ -21,21 +31,22 @@ int main()
     
     printf("Enter a statment: ");
     
+    //input processing
     while(op != '='){
         op = getchar();
         if(isdigit(op)){
-            push(op - '0');
+            push(op - '0'); // process integers
         }
         else{
-            switch(op){
+            switch(op){ //process opperands 
                 case '+' :
                     a = pop();
                     b = pop();
                     push(a+b);
                     break;
                 case '-' :
-                    a = pop();
                     b = pop();
+                    a = pop();
                     push(a-b);
                     break;
                 case '*' :
@@ -44,12 +55,12 @@ int main()
                     push(a*b);
                     break;
                 case '/' :
-                    a = pop();
                     b = pop();
+                    a = pop();
                     push(a/b);
                     break;
                 case '=' :
-                    printf("%d", pop());
+                    printf("%d", pop()); //end and display result
                     break;
             }
         }
