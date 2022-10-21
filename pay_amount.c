@@ -6,7 +6,7 @@ void pay_amout(int, int*, int*, int*,int*);
 
 int main()
 {
-    int dollars, twenties, tens, fives, ones;
+    int dollars, twenties, tens, fives, ones = 0;
     dollars = 60;
     pay_amout(dollars, &twenties, &tens, &fives, &ones);
     printf("twenties: %d\ntens: %d\nfives: %d\nones: %d\n", twenties, tens, fives, ones);
