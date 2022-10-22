@@ -14,9 +14,9 @@ int main()
     int dollars, twenties = 0, tens = 0, fives = 0, ones = 0; //Actual varaibles for storing the dollar values
     dollars = 0; //Raw amount
     
-    printf("Enter an ammount to convert: ") 
+    printf("Enter an ammount to convert: ");
     scanf("%d", &dollars); //Get input
-    pay_amout(dollars, &twenties, &tens, &fives, &ones); 
+    pay_amount(dollars, &twenties, &tens, &fives, &ones); 
     printf("twenties: %d\ntens: %d\nfives: %d\nones: %d\n", twenties, tens, fives, ones); //Print output
 
     return 0;
