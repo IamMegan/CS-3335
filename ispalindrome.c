@@ -1,3 +1,11 @@
+/*
+Program name: ispalindrome
+Programmer: Megan Johnson
+Class: 3335
+HW: 04
+Problem: 02
+*/
+
 #include <stdio.h>
 #include <ctype.h>
 #define N 50
@@ -9,6 +17,8 @@ int main()
     char *pb;
     char *pe;
     
+
+    // Get user input
     printf("Enter a string: \n");
     int c;
     while((c = getchar()) != '\n'){
@@ -18,7 +28,10 @@ int main()
             size++;
         }
     }
-    
+    /*
+        Logic. Uses pointer shit to check for palindrome
+        Breaks if one set doesn't match, otherwise, continues until the start is past the end.
+    */
     pb = arr;
     pe = arr + size - 1;
     while(pb <= pe){
@@ -31,7 +44,7 @@ int main()
             }
         }
     
-    
+    // Print output
     if(pb >= pe){
         printf("true");    
     }
