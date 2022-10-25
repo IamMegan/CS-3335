@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #define SIZE 10
 
 void setBoard(int *);
@@ -38,13 +39,14 @@ void setComputerBoard(int* cBoard){
 int playGame(int *hBoard, int *cBoard){
     int cshot;
     int hshot;
-    // int flag = true;
+    int flag = true;
     int winner;
-    while(1){
+    while(flag){
         cshot = rand() % 10;
         if(hBoard[cshot] == 1){
             printf("HIT!\n");
-            return 0;
+            winner = 0;
+            flag = false;
         }
         else{
             printf("MISS! Guess: %d\n", cshot);
@@ -54,12 +56,15 @@ int playGame(int *hBoard, int *cBoard){
         scanf("%d\n", &hshot);
         if(cBoard[hshot] == 1){
             printf("HIT!\n");
-            return 1;
+            winner = 1;
+            flag = false;
         }
         else{
             printf("MISS!\n");
         }
     }
+    
+    
     if(winner){
         printf("You win!");
     }
