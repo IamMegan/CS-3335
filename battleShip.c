@@ -41,7 +41,8 @@ int playGame(int *hBoard, int *cBoard){
     int hshot;
     int flag = true;
     int winner;
-    while(flag){
+    
+    do{
         cshot = rand() % 10;
         if(hBoard[cshot] == 1){
             printf("HIT!\n");
@@ -50,6 +51,7 @@ int playGame(int *hBoard, int *cBoard){
         }
         else{
             printf("MISS! Guess: %d\n", cshot);
+        
             
         }
         printf("Enter a position to fire at: ");
@@ -63,6 +65,7 @@ int playGame(int *hBoard, int *cBoard){
             printf("MISS!\n");
         }
     }
+    while(flag);
     
     
     if(winner){
