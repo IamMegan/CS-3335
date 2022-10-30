@@ -19,6 +19,12 @@ int main()
     setComputerBoard(cBoard);
     int winner = playGame(hBoard, cBoard);
     //printBoards(hBoard, cBoard);
+    if(winner){
+        printf("You hit the enemy!");
+    }
+    else{
+        printf("You were hit!");
+    }
    
     
     return 0;
@@ -29,6 +35,8 @@ void setBoard(int *hBoard){
     printf("Welcome to 1D battleship!\nSelect a location between 0 and 9 to place your ship: ");
     scanf("%d", &n);
     hBoard[n] = 1;
+    
+    
 }
 
 void setComputerBoard(int* cBoard){
@@ -39,41 +47,35 @@ void setComputerBoard(int* cBoard){
 int playGame(int *hBoard, int *cBoard){
     int cshot;
     int hshot;
-    int flag = true;
     int winner;
     
-    do{
+    while(1){
         cshot = rand() % 10;
+        printf("Computer is playing...\n");
         if(hBoard[cshot] == 1){
-            printf("HIT!\n");
             winner = 0;
-            flag = false;
+            printf("HIT!\n");
+            break;
+           
         }
         else{
             printf("MISS! Guess: %d\n", cshot);
-        
-            
         }
+        
         printf("Enter a position to fire at: ");
-        scanf("%d\n", &hshot);
+        scanf("%d", &hshot);
         if(cBoard[hshot] == 1){
-            printf("HIT!\n");
             winner = 1;
-            flag = false;
+            printf("HIT!\n");
+            break;
         }
         else{
-            printf("MISS!\n");
+            printf("MISS! Try again!\n");
         }
     }
-    while(flag);
     
+    return winner;
     
-    if(winner){
-        printf("You win!");
-    }
-    else{
-        printf("You lose");
-    }
     
 }
 
