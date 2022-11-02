@@ -56,13 +56,13 @@ int playGame(int *hBoard, int *cBoard){
         printf("\nComputer is playing...\n");
         if(hBoard[cshot] == 1){
             winner = 0;
-            hBoard[cshot] == 3;
+            hBoard[cshot] = 3;
             printf("HIT!\n");
             break;
            
         }
         else{
-            hBoard[cshot] == 2;
+            hBoard[cshot] = 2;
             printf("MISS! Guess: %d\n", cshot);
         }
         printBoards(hBoard, cBoard);
@@ -70,12 +70,12 @@ int playGame(int *hBoard, int *cBoard){
         scanf("%d", &hshot);
         if(cBoard[hshot] == 1){
             winner = 1;
-            cBoard[hshot] == 3;
+            cBoard[hshot] = 3;
             printf("HIT!\n");
             break;
         }
         else{
-            cBoard[hshot] == 2;
+            cBoard[hshot] = 2;
             printf("MISS! Try again!\n");
            
         }
