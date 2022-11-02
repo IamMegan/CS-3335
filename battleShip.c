@@ -2,31 +2,32 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <time.h>
 #define SIZE 10
 
 void setBoard(int *);
 void setComputerBoard(int *);
 int playGame(int *, int *);
-//Test function
 void printBoards(int*, int*);
+
 
 int main()
 {
     
     int hBoard[SIZE] = {0};
     int cBoard[SIZE] = {0};
+    srand(time(NULL));
     setBoard(hBoard);
     setComputerBoard(cBoard);
     int winner = playGame(hBoard, cBoard);
-    //printBoards(hBoard, cBoard);
     if(winner){
-        printf("You hit the enemy!");
+        printf("\nYou hit the enemy!\n");
     }
     else{
-        printf("You were hit!");
+        printf("\nYou were hit!\n");
     }
    
-    
+    printBoards(hBoard, cBoard);
     return 0;
 }
 
@@ -51,27 +52,34 @@ int playGame(int *hBoard, int *cBoard){
     
     while(1){
         cshot = rand() % 10;
-        printf("Computer is playing...\n");
+        printBoards(hBoard, cBoard);
+        printf("\nComputer is playing...\n");
         if(hBoard[cshot] == 1){
             winner = 0;
+            hBoard[cshot] == 3;
             printf("HIT!\n");
             break;
            
         }
         else{
+            hBoard[cshot] == 2;
             printf("MISS! Guess: %d\n", cshot);
         }
-        
+        printBoards(hBoard, cBoard);
         printf("Enter a position to fire at: ");
         scanf("%d", &hshot);
         if(cBoard[hshot] == 1){
             winner = 1;
+            cBoard[hshot] == 3;
             printf("HIT!\n");
             break;
         }
         else{
+            cBoard[hshot] == 2;
             printf("MISS! Try again!\n");
+           
         }
+        printBoards(hBoard, cBoard);
     }
     
     return winner;
@@ -79,15 +87,42 @@ int playGame(int *hBoard, int *cBoard){
     
 }
 
-// void printBoards(int *hBoard, int *cBoard){
-//     printf("|");
-//     for(int  i = 0; i < SIZE; i++){
-//         printf(" %d |", hBoard[i]);
-//     }
-//     printf("\n");
-//     printf("|");
-//     for(int  i = 0; i < SIZE; i++){
-//         printf(" %d |", cBoard[i]);
-//     }
+void printBoards(int *hBoard, int *cBoard){
     
-// }
+    printf("\n");
+    printf("HBoard: |");
+    for(int  i = 0; i < SIZE; i++){
+        if(hBoard[i] == 0){
+            printf(" * |");
+        }
+        else if(hBoard[i] == 1){
+            printf(" S |");
+        }
+        else if(hBoard[i] == 2){
+            printf(" M |");
+        }
+        else if(hBoard[i] == 3){
+            printf(" H |");
+        }
+        
+        //printf(" %d |", hBoard[i]);
+    }
+    printf("\n");
+    printf("CBoard: |");
+    for(int  i = 0; i < SIZE; i++){
+        if(cBoard[i] == 0 || cBoard[i] == 1){
+            printf(" * |");
+        }
+        // else if(cBoard[i] == 1){
+        //     printf(" S |");
+        // }
+        else if(cBoard[i] == 2){
+            printf(" M |");
+        }
+        else if(cBoard[i] == 3){
+            printf(" H |");
+        }
+        //printf(" %d |", cBoard[i]);
+    }
+    printf("\n");
+}
