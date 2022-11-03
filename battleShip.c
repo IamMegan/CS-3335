@@ -19,6 +19,8 @@ int main()
     srand(time(NULL));
     setBoard(hBoard);
     setComputerBoard(cBoard);
+    printf("Boards set!");
+    printBoards(hBoard, cBoard);
     int winner = playGame(hBoard, cBoard);
     if(winner){
         printf("\nYou hit the enemy!\n");
@@ -64,8 +66,9 @@ int playGame(int *hBoard, int *cBoard){
         else{
             hBoard[cshot] = 2;
             printf("MISS! Guess: %d\n", cshot);
+            printBoards(hBoard, cBoard);
         }
-        printf("Enter a position to fire at: ");
+        printf("\nEnter a position to fire at: ");
         scanf("%d", &hshot);
         if(cBoard[hshot] == 1){
             winner = 1;
@@ -75,10 +78,11 @@ int playGame(int *hBoard, int *cBoard){
         }
         else{
             cBoard[hshot] = 2;
-            printf("MISS! Try again!\n");
+            printf("MISS!\n");
+            printBoards(hBoard, cBoard);
            
         }
-        printBoards(hBoard, cBoard);
+        
     }
     
     return winner;
