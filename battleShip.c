@@ -5,10 +5,18 @@
 #include <time.h>
 #define SIZE 10
 
-void setBoard(int *);
-void setComputerBoard(int *);
-int playGame(int *, int *);
-void printBoards(int*, int*);
+/*
+Program Name: Project2_Johnson.c
+Programmer: Megan Johnson
+Class: CS 3335
+Project: 02
+*/ 
+
+
+void setBoard(int *); // Sets the human's board, taking user input for the position
+void setComputerBoard(int *); // Sets the computer board, using seeded random positions
+int playGame(int *, int *); // Main code
+void printBoards(int*, int*);// Effective UI code
 
 
 int main()
@@ -19,7 +27,7 @@ int main()
     srand(time(NULL));
     setBoard(hBoard);
     setComputerBoard(cBoard);
-    printf("Boards set!");
+    printf("Boards set!\n"); // Let the user know that the process of setting the boards has completed and the game is ready to play
     printBoards(hBoard, cBoard);
     int winner = playGame(hBoard, cBoard);
     if(winner){
@@ -52,7 +60,12 @@ int playGame(int *hBoard, int *cBoard){
     int hshot;
     int winner;
     
-    while(1){
+    while(1){   /* 
+                Infinite loop is intentional, will only break when a hit is detected.
+                Uses different numbers to represent different elements 
+                0 = empty spot, 1 = Ship, 2 = Miss, 3 = Hit
+                When a ship is hit, that is, when one of the shot variables is at where a ship is, the position is set to 3, HIT! is printed, and the look breaks.
+                */
         cshot = rand() % 10;
        
         printf("\nComputer is playing...\n");
@@ -92,6 +105,12 @@ int playGame(int *hBoard, int *cBoard){
 
 void printBoards(int *hBoard, int *cBoard){
     
+    //Prints based on what number is in the Array. The vertical bars are for ease of reading.
+    printf("        |");
+    for(int i = 0; i < SIZE; i++){
+        printf(" %d |",i);
+    }
+    
     printf("\n");
     printf("HBoard: |");
     for(int  i = 0; i < SIZE; i++){
@@ -108,7 +127,6 @@ void printBoards(int *hBoard, int *cBoard){
             printf(" H |");
         }
         
-        //printf(" %d |", hBoard[i]);
     }
     printf("\n");
     printf("CBoard: |");
@@ -116,16 +134,13 @@ void printBoards(int *hBoard, int *cBoard){
         if(cBoard[i] == 0 || cBoard[i] == 1){
             printf(" * |");
         }
-        // else if(cBoard[i] == 1){
-        //     printf(" S |");
-        // }
         else if(cBoard[i] == 2){
             printf(" M |");
         }
         else if(cBoard[i] == 3){
             printf(" H |");
         }
-        //printf(" %d |", cBoard[i]);
+        
     }
     printf("\n");
 }
