@@ -30,7 +30,7 @@ void printStats(struct Line *lines, int n);
 
 int main(int argc, char argv[]){
     int n;
-    
+    Line lines[] = readfile("Lines", n);
     
     return 0;
 }
