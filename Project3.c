@@ -41,7 +41,7 @@ struct Line * readFile(char file_name[], int *n){
     FILE *fp = fopen(file_name, "r");
     
     if(!fp){
-        //exit("File not found!");
+        exit(1);
     }
     
     fscanf(fp, "%d", n);
@@ -59,7 +59,7 @@ struct Line * readFile(char file_name[], int *n){
 void computeLengths(struct Line *lines, int n){
     printf("Computing lengths...");
     for(int i = 0; i < n; i++){
-        (lines + i)->Length = sqrt(((lines + i)->b.y - (lines + i)->a.y) + (lines + i)->b.x - (lines + i)->a.x);
+        (lines + i)->Length = sqrt(pow(((lines + i)->b.y - (lines + i)->a.y),2) + pow(((lines + i)->b.x - (lines + i)->a.x),2));
     }
 }
 
@@ -67,7 +67,7 @@ void saveLengths(struct Line *lines, int n){
     printf("Saving lengths...");
     FILE *outFile = fopen("lengths_Johnson_Megan.txt", "w+");
     for(int i = 0; i < n; i++){
-        fprintf("lengths_Johnson_Megan.txt","%f\n",(lines + i)->Length);
+        fprintf(outFile,"%f\n",(lines + i)->Length);
     }
 
 }
