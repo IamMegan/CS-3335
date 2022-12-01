@@ -30,7 +30,9 @@ void printStats(struct Line *lines, int n);
 
 int main(int argc, char argv[]){
     int n;
-    Line lines[] = readfile("Lines", n);
+    Line *lines = readFile("Lines.txt", &n);
+    computeLengths(lines, n);
+    saveLengths(lines, n);
     
     return 0;
 }
@@ -45,16 +47,27 @@ struct Line * readFile(char file_name[], int *n){
     fscanf(fp, "%d", n);
     
     Line *lines = calloc(*n, sizeof(Line));
-    
+    printf("Array of size %d created.", *n);
+        
     for(int i = 0; i < *n; i++){
         fscanf(fp, "%d %d %d %d", &(lines + i)->a.x, &(lines + i)->a.y, &(lines + i)->b.x, &(lines + i)->b.y);
     }
     
-    return lines; //TODO
+    return lines;
 }
 
 void computeLengths(struct Line *lines, int n){
+    printf("Computing lengths...");
     for(int i = 0; i < n; i++){
         (lines + i)->Length = sqrt(((lines + i)->b.y - (lines + i)->a.y) + (lines + i)->b.x - (lines + i)->a.x);
     }
+}
+
+void saveLengths(struct Line *lines, int n){
+    printf("Saving lengths...");
+    FILE *outFile = fopen("lengths_Johnson_Megan.txt", "w+");
+    for(int i = 0; i < n; i++){
+        fprintf("lengths_Johnson_Megan.txt","%f\n",(lines + i)->Length);
+    }
+
 }
