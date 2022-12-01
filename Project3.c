@@ -67,7 +67,7 @@ void saveLengths(struct Line *lines, int n){
     printf("Saving lengths...");
     FILE *outFile = fopen("lengths_Johnson_Megan.txt", "w+");
     for(int i = 0; i < n; i++){
-        fprintf("lengths_Johnson_Megan.txt","%f\n",(lines + i)->Length);
+        fprintf(outFile,"%f\n",(lines + i)->Length);
     }
 
 }
