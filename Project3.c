@@ -12,6 +12,7 @@ Project: 01
 #include <math.h>
 #include <limits.h>
 
+//Type definitions for structs
 typedef struct Point{
   int x;
   int y;
@@ -23,7 +24,7 @@ typedef struct Line{
  float Length;
 }Line;
 
-
+//Prototypes of functions
 struct Line * readFile(char file_name[], int *n);
 void computeLengths(struct Line *lines, int n);
 void saveLengths(struct Line *lines, int n);
@@ -40,6 +41,7 @@ int main(int argc, char argv[]){
     return 0;
 }
 
+//Opens and reads the line data from file, returns an array of structs
 struct Line * readFile(char file_name[], int *n){
     FILE *fp = fopen(file_name, "r");
     
@@ -48,7 +50,7 @@ struct Line * readFile(char file_name[], int *n){
     }
     
     fscanf(fp, "%d", n);
-    
+    //Allocates a perfect sized array for the created Structs
     Line *lines = calloc(*n, sizeof(Line));
     printf("Array of size %d created.\n", *n);
         
@@ -58,7 +60,7 @@ struct Line * readFile(char file_name[], int *n){
     printf("Data Saved.\n");
     return lines;
 }
-
+//Computes the lengths of the lines by using the distance formula
 void computeLengths(struct Line *lines, int n){
     printf("Computing lengths...\n");
     for(int i = 0; i < n; i++){
@@ -96,5 +98,7 @@ void printStats(struct Line *lines, int n){
     
     
     printf("Max Length = %0.1f\nMin Length = %0.1f\nAverage Length = %0.1f\n",maxLine,minLine,avg/n);
+
+    free(lines);
 }
 
