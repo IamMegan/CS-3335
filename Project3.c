@@ -37,7 +37,7 @@ int main(int argc, char argv[]){
     computeLengths(lines, n);
     saveLengths(lines, n);
     printStats(lines, n);
-    
+    free(lines);
     return 0;
 }
 
@@ -68,7 +68,7 @@ void computeLengths(struct Line *lines, int n){
     }
     printf("Length Computed\n");
 }
-
+//Prints the lengths to a file.
 void saveLengths(struct Line *lines, int n){
     printf("Saving lengths...\n");
     FILE *outFile = fopen("lengths_Johnson_Megan.txt", "w+");
@@ -77,7 +77,7 @@ void saveLengths(struct Line *lines, int n){
     }
     printf("Lengths Saved\n");
 }
-
+//Prints various statistics to the terminal
 void printStats(struct Line *lines, int n){
     float maxLine = 0;
     float minLine = INT_MAX;
@@ -99,6 +99,5 @@ void printStats(struct Line *lines, int n){
     
     printf("Max Length = %0.1f\nMin Length = %0.1f\nAverage Length = %0.1f\n",maxLine,minLine,avg/n);
 
-    free(lines);
 }
 
