@@ -29,6 +29,7 @@ void computeLengths(struct Line *lines, int n);
 void saveLengths(struct Line *lines, int n);
 void printStats(struct Line *lines, int n);
 
+
 int main(int argc, char argv[]){
     int n;
     Line *lines = readFile("Lines.txt", &n);
