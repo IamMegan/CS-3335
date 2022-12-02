@@ -10,6 +10,7 @@ Project: 01
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <limits.h>
 
 typedef struct Point{
   int x;
@@ -33,6 +34,7 @@ int main(int argc, char argv[]){
     Line *lines = readFile("Lines.txt", &n);
     computeLengths(lines, n);
     saveLengths(lines, n);
+    printStats(lines, n);
     
     return 0;
 }
@@ -41,33 +43,61 @@ struct Line * readFile(char file_name[], int *n){
     FILE *fp = fopen(file_name, "r");
     
     if(!fp){
-        //exit("File not found!");
+        exit(1);
     }
     
     fscanf(fp, "%d", n);
     
     Line *lines = calloc(*n, sizeof(Line));
-    printf("Array of size %d created.", *n);
+    printf("Array of size %d created.\n", *n);
         
     for(int i = 0; i < *n; i++){
         fscanf(fp, "%d %d %d %d", &(lines + i)->a.x, &(lines + i)->a.y, &(lines + i)->b.x, &(lines + i)->b.y);
     }
-    
+    printf("Data Saved.\n");
     return lines;
 }
 
 void computeLengths(struct Line *lines, int n){
-    printf("Computing lengths...");
+    printf("Computing lengths...\n");
     for(int i = 0; i < n; i++){
-        (lines + i)->Length = sqrt(((lines + i)->b.y - (lines + i)->a.y) + (lines + i)->b.x - (lines + i)->a.x);
+        (lines + i)->Length = sqrt(pow(((lines + i)->b.y - (lines + i)->a.y),2) + pow(((lines + i)->b.x - (lines + i)->a.x),2));
     }
+    printf("Length Computed\n");
 }
 
 void saveLengths(struct Line *lines, int n){
-    printf("Saving lengths...");
+    printf("Saving lengths...\n");
     FILE *outFile = fopen("lengths_Johnson_Megan.txt", "w+");
     for(int i = 0; i < n; i++){
+<<<<<<< HEAD
         fprintf(outFile,"%f\n",(lines + i)->Length);
+=======
+        fprintf(outFile,"%0.1f\n",(lines + i)->Length);
+>>>>>>> c876371ca3071870593fb4f7914bf83f30865744
     }
-
+    printf("Lengths Saved\n");
 }
+
+void printStats(struct Line *lines, int n){
+    float maxLine = 0;
+    float minLine = INT_MAX;
+    float avg = 0;
+    for(int i = 0; i < n; i++){
+       if((lines + i)->Length > maxLine)
+            maxLine = (lines + i)->Length;
+    }  
+    
+    for(int i = 0; i < n; i++){
+        if((lines + i)->Length < minLine)
+            minLine = (lines + i)->Length;
+    }  
+    
+    for(int i = 0; i < n; i++){
+       avg += (lines + i)->Length; 
+    }  
+    
+    
+    printf("Max Length = %0.1f\nMin Length = %0.1f\nAverage Length = %0.1f\n",maxLine,minLine,avg/n);
+}
+
